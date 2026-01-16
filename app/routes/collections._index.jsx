@@ -1,141 +1,124 @@
-import {useLoaderData, Link} from 'react-router';
-import {getPaginationVariables, Image} from '@shopify/hydrogen';
-import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
+import { useLoaderData, Link } from 'react-router';
+import { COLLECTION_CATEGORIES } from '~/data/collectionCategories';
+
+/**
+ * @type {Route.MetaFunction}
+ */
+export const meta = () => {
+  return [{ title: 'Shop by Category | Collections' }];
+};
 
 /**
  * @param {Route.LoaderArgs} args
  */
-export async function loader(args) {
-  // Start fetching non-critical data without blocking time to first byte
-  const deferredData = loadDeferredData(args);
+export async function loader({ context }) {
+  // Fetch ALL collections to match with categories
+  const { collections } = await context.storefront.query(ALL_COLLECTIONS_QUERY);
 
-  // Await the critical data required to render initial state of the page
-  const criticalData = await loadCriticalData(args);
-
-  return {...deferredData, ...criticalData};
-}
-
-/**
- * Load data necessary for rendering content above the fold. This is the critical data
- * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
- * @param {Route.LoaderArgs}
- */
-async function loadCriticalData({context, request}) {
-  const paginationVariables = getPaginationVariables(request, {
-    pageBy: 4,
-  });
-
-  const [{collections}] = await Promise.all([
-    context.storefront.query(COLLECTIONS_QUERY, {
-      variables: paginationVariables,
-    }),
-    // Add other queries here, so that they are loaded in parallel
-  ]);
-
-  return {collections};
-}
-
-/**
- * Load data for rendering content below the fold. This data is deferred and will be
- * fetched after the initial page load. If it's unavailable, the page should still 200.
- * Make sure to not throw any errors here, as it will cause the page to 500.
- * @param {Route.LoaderArgs}
- */
-function loadDeferredData({context}) {
-  return {};
+  return {
+    collections: collections.nodes,
+    categories: COLLECTION_CATEGORIES,
+  };
 }
 
 export default function Collections() {
   /** @type {LoaderReturnData} */
-  const {collections} = useLoaderData();
+  const { categories, collections } = useLoaderData();
 
   return (
-    <div className="collections">
-      <h1>Collections</h1>
-      <PaginatedResourceSection
-        connection={collections}
-        resourcesClassName="collections-grid"
-      >
-        {({node: collection, index}) => (
-          <CollectionItem
-            key={collection.id}
-            collection={collection}
-            index={index}
-          />
-        )}
-      </PaginatedResourceSection>
+    <div className="collections-page">
+      <div className="collections-header">
+        <h1>Shop by Category</h1>
+        <p className="collections-subtitle">
+          Discover our curated collections organized by category
+        </p>
+      </div>
+
+      <div className="category-cards-grid">
+        {categories.map((category) => {
+          // Get collections that belong to this category
+          const categoryCollections = collections.filter(col =>
+            category.collections.includes(col.handle)
+          );
+
+          return (
+            <CategoryCard
+              key={category.id}
+              category={category}
+              collectionsCount={categoryCollections.length}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
 
 /**
+ * CategoryCard Component
  * @param {{
- *   collection: CollectionFragment;
- *   index: number;
+ *   category: {id: string, title: string, description: string, emoji: string, bannerImage: string};
+ *   collectionsCount: number;
  * }}
  */
-function CollectionItem({collection, index}) {
+function CategoryCard({ category, collectionsCount }) {
   return (
     <Link
-      className="collection-item"
-      key={collection.id}
-      to={`/collections/${collection.handle}`}
+      to={`/collections/category/${category.id}`}
+      className="category-card"
       prefetch="intent"
     >
-      {collection?.image && (
-        <Image
-          alt={collection.image.altText || collection.title}
-          aspectRatio="1/1"
-          data={collection.image}
-          loading={index < 3 ? 'eager' : undefined}
-          sizes="(min-width: 45em) 400px, 100vw"
-        />
-      )}
-      <h5>{collection.title}</h5>
+      <div className="category-card__banner">
+        {/* Banner image with fallback gradient */}
+        <div
+          className="category-card__banner-image"
+          style={{
+            backgroundImage: `url(${category.bannerImage}), linear-gradient(135deg, #667eea 0%, #764ba2 100%)`
+          }}
+        >
+          <div className="category-card__overlay">
+            <span className="category-card__emoji">{category.emoji}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="category-card__content">
+        <h3 className="category-card__title">{category.title}</h3>
+        <p className="category-card__description">{category.description}</p>
+
+        <div className="category-card__meta">
+          <span className="category-card__count">
+            {collectionsCount} {collectionsCount === 1 ? 'Collection' : 'Collections'}
+          </span>
+          <span className="category-card__arrow">→</span>
+        </div>
+      </div>
     </Link>
   );
 }
 
-const COLLECTIONS_QUERY = `#graphql
-  fragment Collection on Collection {
-    id
-    title
-    handle
-    image {
-      id
-      url
-      altText
-      width
-      height
-    }
-  }
-  query StoreCollections(
+const ALL_COLLECTIONS_QUERY = `#graphql
+  query AllCollections(
     $country: CountryCode
-    $endCursor: String
-    $first: Int
     $language: LanguageCode
-    $last: Int
-    $startCursor: String
+    $first: Int
   ) @inContext(country: $country, language: $language) {
-    collections(
-      first: $first,
-      last: $last,
-      before: $startCursor,
-      after: $endCursor
-    ) {
+    collections(first: $first) {
       nodes {
-        ...Collection
-      }
-      pageInfo {
-        hasNextPage
-        hasPreviousPage
-        startCursor
-        endCursor
+        id
+        title
+        handle
+        image {
+          id
+          url
+          altText
+          width
+          height
+        }
       }
     }
   }
 `;
 
 /** @typedef {import('./+types/collections._index').Route} Route */
-/** @typedef {import('storefrontapi.generated').CollectionFragment} CollectionFragment */
 /** @typedef {import('@shopify/remix-oxygen').SerializeFrom<typeof loader>} LoaderReturnData */

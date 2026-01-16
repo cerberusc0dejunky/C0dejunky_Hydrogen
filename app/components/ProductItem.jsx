@@ -1,6 +1,6 @@
-import {Link} from 'react-router';
-import {Image, Money} from '@shopify/hydrogen';
-import {useVariantUrl} from '~/lib/variants';
+import { Link } from 'react-router';
+import { Image, Money } from '@shopify/hydrogen';
+import { useVariantUrl } from '~/lib/variants';
 
 /**
  * @param {{
@@ -11,12 +11,12 @@ import {useVariantUrl} from '~/lib/variants';
  *   loading?: 'eager' | 'lazy';
  * }}
  */
-export function ProductItem({product, loading}) {
+export function ProductItem({ product, loading }) {
   const variantUrl = useVariantUrl(product.handle);
   const image = product.featuredImage;
   return (
     <Link
-      className="product-item"
+      className="product-item card card--hover-lift"
       key={product.id}
       prefetch="intent"
       to={variantUrl}

@@ -5,7 +5,7 @@ import {
   Outlet,
   useLoaderData,
 } from 'react-router';
-import {CUSTOMER_DETAILS_QUERY} from '~/graphql/customer-account/CustomerDetailsQuery';
+import { CUSTOMER_DETAILS_QUERY } from '~/graphql/customer-account/CustomerDetailsQuery';
 
 export function shouldRevalidate() {
   return true;
@@ -14,9 +14,9 @@ export function shouldRevalidate() {
 /**
  * @param {Route.LoaderArgs}
  */
-export async function loader({context}) {
-  const {customerAccount} = context;
-  const {data, errors} = await customerAccount.query(CUSTOMER_DETAILS_QUERY, {
+export async function loader({ context }) {
+  const { customerAccount } = context;
+  const { data, errors } = await customerAccount.query(CUSTOMER_DETAILS_QUERY, {
     variables: {
       language: customerAccount.i18n.language,
     },
@@ -27,7 +27,7 @@ export async function loader({context}) {
   }
 
   return remixData(
-    {customer: data.customer},
+    { customer: data.customer },
     {
       headers: {
         'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -38,7 +38,7 @@ export async function loader({context}) {
 
 export default function AccountLayout() {
   /** @type {LoaderReturnData} */
-  const {customer} = useLoaderData();
+  const { customer } = useLoaderData();
 
   const heading = customer
     ? customer.firstName
@@ -53,13 +53,13 @@ export default function AccountLayout() {
       <AccountMenu />
       <br />
       <br />
-      <Outlet context={{customer}} />
+      <Outlet context={{ customer }} />
     </div>
   );
 }
 
 function AccountMenu() {
-  function isActiveStyle({isActive, isPending}) {
+  function isActiveStyle({ isActive, isPending }) {
     return {
       fontWeight: isActive ? 'bold' : undefined,
       color: isPending ? 'grey' : 'black',
@@ -67,19 +67,27 @@ function AccountMenu() {
   }
 
   return (
-    <nav role="navigation">
+    <nav role="navigation" className="account-menu">
       <NavLink to="/account/orders" style={isActiveStyle}>
-        Orders &nbsp;
+        Orders
       </NavLink>
-      &nbsp;|&nbsp;
+      <span className="divider">|</span>
       <NavLink to="/account/profile" style={isActiveStyle}>
-        &nbsp; Profile &nbsp;
+        Profile
       </NavLink>
-      &nbsp;|&nbsp;
+      <span className="divider">|</span>
       <NavLink to="/account/addresses" style={isActiveStyle}>
-        &nbsp; Addresses &nbsp;
+        Addresses
       </NavLink>
-      &nbsp;|&nbsp;
+      <span className="divider">|</span>
+      <NavLink to="/account/devices" style={isActiveStyle}>
+        My Devices
+      </NavLink>
+      <span className="divider">|</span>
+      <NavLink to="/repairs" style={isActiveStyle}>
+        Repairs
+      </NavLink>
+      <span className="divider">|</span>
       <Logout />
     </nav>
   );

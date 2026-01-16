@@ -4,6 +4,17 @@
     "target": "ES2022",
     "module": "ES2022",
     "moduleResolution": "Bundler",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "~/*": [
@@ -21,5 +32,11 @@
     "*.d.ts",
     ".graphqlrc.js",
     ".react-router/types/**/*"
-, "../Documentation/ProductDetails.jsx", "../Documentation/ProductCard.jsx"  ]
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    ".react-router"
+  ]
 }

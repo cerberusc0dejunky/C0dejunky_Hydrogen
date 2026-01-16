@@ -1,14 +1,15 @@
-import {redirect, useLoaderData} from 'react-router';
-import {getPaginationVariables, Analytics} from '@shopify/hydrogen';
-import {PaginatedResourceSection} from '~/components/PaginatedResourceSection';
-import {redirectIfHandleIsLocalized} from '~/lib/redirect';
-import {ProductItem} from '~/components/ProductItem';
+import { redirect, useLoaderData } from 'react-router';
+import { useState } from 'react';
+import { getPaginationVariables, Analytics } from '@shopify/hydrogen';
+import { redirectIfHandleIsLocalized } from '~/lib/redirect';
+import { TabbedCollectionGrid } from '~/components/TabbedCollectionGrid';
+import { ProductModal } from '~/components/ProductModal';
 
 /**
  * @type {Route.MetaFunction}
  */
-export const meta = ({data}) => {
-  return [{title: `Hydrogen | ${data?.collection.title ?? ''} Collection`}];
+export const meta = ({ data }) => {
+  return [{ title: `Hydrogen | ${data?.collection.title ?? ''} Collection` }];
 };
 
 /**
@@ -21,7 +22,7 @@ export async function loader(args) {
   // Await the critical data required to render initial state of the page
   const criticalData = await loadCriticalData(args);
 
-  return {...deferredData, ...criticalData};
+  return { ...deferredData, ...criticalData };
 }
 
 /**
@@ -29,20 +30,20 @@ export async function loader(args) {
  * needed to render the page. If it's unavailable, the whole page should 400 or 500 error.
  * @param {Route.LoaderArgs}
  */
-async function loadCriticalData({context, params, request}) {
-  const {handle} = params;
-  const {storefront} = context;
+async function loadCriticalData({ context, params, request }) {
+  const { handle } = params;
+  const { storefront } = context;
   const paginationVariables = getPaginationVariables(request, {
-    pageBy: 8,
+    pageBy: 24, // Increased for better tab experience
   });
 
   if (!handle) {
     throw redirect('/collections');
   }
 
-  const [{collection}] = await Promise.all([
+  const [{ collection }] = await Promise.all([
     storefront.query(COLLECTION_QUERY, {
-      variables: {handle, ...paginationVariables},
+      variables: { handle, ...paginationVariables },
       // Add other queries here, so that they are loaded in parallel
     }),
   ]);
@@ -54,7 +55,7 @@ async function loadCriticalData({context, params, request}) {
   }
 
   // The API handle might be localized, so redirect to the localized handle
-  redirectIfHandleIsLocalized(request, {handle, data: collection});
+  redirectIfHandleIsLocalized(request, { handle, data: collection });
 
   return {
     collection,
@@ -67,30 +68,48 @@ async function loadCriticalData({context, params, request}) {
  * Make sure to not throw any errors here, as it will cause the page to 500.
  * @param {Route.LoaderArgs}
  */
-function loadDeferredData({context}) {
+function loadDeferredData() {
   return {};
 }
 
 export default function Collection() {
   /** @type {LoaderReturnData} */
-  const {collection} = useLoaderData();
+  const { collection } = useLoaderData();
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    // Small delay before clearing product for smooth transition
+    setTimeout(() => setSelectedProduct(null), 300);
+  };
+
+  // Get all products from the collection
+  const products = collection.products.nodes || [];
 
   return (
     <div className="collection">
       <h1>{collection.title}</h1>
       <p className="collection-description">{collection.description}</p>
-      <PaginatedResourceSection
-        connection={collection.products}
-        resourcesClassName="products-grid"
-      >
-        {({node: product, index}) => (
-          <ProductItem
-            key={product.id}
-            product={product}
-            loading={index < 8 ? 'eager' : undefined}
-          />
-        )}
-      </PaginatedResourceSection>
+
+      {/* Tabbed Collection Grid */}
+      <TabbedCollectionGrid
+        products={products}
+        onProductClick={handleProductClick}
+      />
+
+      {/* Product Modal */}
+      <ProductModal
+        product={selectedProduct}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
+
       <Analytics.CollectionView
         data={{
           collection: {
@@ -112,6 +131,10 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
     id
     handle
     title
+    productType
+    vendor
+    description
+    availableForSale
     featuredImage {
       id
       altText
@@ -125,6 +148,15 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
       }
       maxVariantPrice {
         ...MoneyProductItem
+      }
+    }
+    variants(first: 10) {
+      nodes {
+        id
+        availableForSale
+        price {
+          ...MoneyProductItem
+        }
       }
     }
   }

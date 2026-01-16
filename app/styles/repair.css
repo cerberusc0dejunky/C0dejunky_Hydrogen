@@ -1,0 +1,200 @@
+/* ========================================
+ * REPAIR CALCULATOR STYLES
+ * ========================================
+ */
+
+.repair-calculator-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.calculator-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.calculator-header h1 {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: var(--color-foreground-heading);
+}
+
+.calculator-container {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 40px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .calculator-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card {
+    background: var(--color-background);
+    border-radius: var(--border-radius-cards, 16px);
+    padding: 30px;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    display: block;
+    font-family: var(--font-subheading);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.repair-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.repair-type-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    background: #f8f9fa;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: var(--font-subheading);
+    font-weight: 500;
+}
+
+.repair-type-btn:hover {
+    background: #edf2ff;
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+.repair-type-btn.active {
+    background: white;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.repair-icon {
+    font-size: 24px;
+}
+
+/* Result Card */
+.estimate-card {
+    position: sticky;
+    top: 100px;
+    border: 2px solid var(--color-primary);
+}
+
+.estimate-card h3 {
+    margin-top: 0;
+    font-size: 24px;
+    margin-bottom: 24px;
+}
+
+.estimate-details {
+    margin-bottom: 30px;
+}
+
+.estimate-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.estimate-row.total {
+    margin-top: 20px;
+    padding-top: 10px;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--color-primary);
+}
+
+.total-price {
+    font-family: var(--font-heading);
+}
+
+.disclaimer {
+    font-size: 12px;
+    opacity: 0.6;
+    margin-top: 15px;
+    line-height: 1.4;
+}
+
+/* Inventory Section */
+.parts-inventory {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--color-border);
+}
+
+.parts-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.part-mini-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: #fdfdfd;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+}
+
+.part-icon {
+    width: 60px;
+    height: 60px;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border-radius: 8px;
+}
+
+.animate-in {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.estimate-placeholder {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #fcfcfc;
+    border: 2px dashed var(--color-border);
+}
+
+.placeholder-content {
+    opacity: 0.5;
+}

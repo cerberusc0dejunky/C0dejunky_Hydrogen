@@ -1,25 +1,30 @@
-import { useEffect, useState } from 'react';
-import { Image, Money, AddToCartButton } from '@shopify/hydrogen';
-import { useFetcher } from 'react-router';
+import { useState, useEffect, useRef } from 'react';
+import { Image, Money } from '@shopify/hydrogen';
+import { AddToCartButton } from './AddToCartButton';
+import { useAside } from './Aside';
 
 /**
  * ProductModal Component
- * Modal that displays full product details with purchase options
- * @param {Object} product - The product to display
- * @param {boolean} isOpen - Whether the modal is open
- * @param {Function} onClose - Callback to close the modal
+ * AliExpress-style modal for viewing products without losing browsing position
+ * 
+ * Features:
+ * - Opens product details in overlay
+ * - Add to cart without leaving collection
+ * - Keyboard navigation (ESC to close)
+ * - Smooth animations
+ * - Prevents body scroll when open
+ * 
+ * @param {{
+ *   product: ProductItemFragment | null;
+ *   isOpen: boolean;
+ *   onClose: () => void;
+ * }}
  */
 export function ProductModal({ product, isOpen, onClose }) {
-    const [selectedVariant, setSelectedVariant] = useState(null);
-    const fetcher = useFetcher();
+    const modalRef = useRef(null);
+    const { open: openCart } = useAside();
 
-    useEffect(() => {
-        if (product?.variants?.nodes?.length) {
-            setSelectedVariant(product.variants.nodes[0]);
-        }
-    }, [product]);
-
-    // Handle ESC key to close modal
+    // Handle ESC key to close
     useEffect(() => {
         const handleEscape = (e) => {
             if (e.key === 'Escape' && isOpen) {
@@ -29,63 +34,99 @@ export function ProductModal({ product, isOpen, onClose }) {
 
         if (isOpen) {
             document.addEventListener('keydown', handleEscape);
+            // Prevent body scroll
             document.body.style.overflow = 'hidden';
         }
 
         return () => {
             document.removeEventListener('keydown', handleEscape);
-            document.body.style.overflow = 'unset';
+            document.body.style.overflow = '';
         };
     }, [isOpen, onClose]);
 
+    // Click outside to close
+    const handleBackdropClick = (e) => {
+        if (e.target === e.currentTarget) {
+            onClose();
+        }
+    };
+
+    // Focus trap
+    useEffect(() => {
+        if (isOpen && modalRef.current) {
+            const focusableElements = modalRef.current.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            const handleTab = (e) => {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstElement) {
+                            e.preventDefault();
+                            lastElement?.focus();
+                        }
+                    } else {
+                        if (document.activeElement === lastElement) {
+                            e.preventDefault();
+                            firstElement?.focus();
+                        }
+                    }
+                }
+            };
+
+            document.addEventListener('keydown', handleTab);
+            firstElement?.focus();
+
+            return () => {
+                document.removeEventListener('keydown', handleTab);
+            };
+        }
+    }, [isOpen, product]);
+
     if (!isOpen || !product) return null;
 
-    const image = selectedVariant?.image || product.featuredImage;
-    const isAvailable = selectedVariant?.availableForSale ?? true;
+    const selectedVariant = product.variants?.nodes?.[0];
+    const image = product.featuredImage;
 
-    const handleBuyNow = () => {
-        if (!selectedVariant || !isAvailable) return;
-
-        fetcher.submit(
-            {
-                cartAction: 'BUY_NOW',
-                lines: JSON.stringify([
-                    {
-                        merchandiseId: selectedVariant.id,
-                        quantity: 1,
-                    },
-                ]),
-            },
-            { method: 'POST', action: '/cart' },
-        );
+    const handleAddToCart = async () => {
+        // Small delay to show success feedback
+        setTimeout(() => {
+            openCart();
+        }, 300);
     };
 
     return (
-        <div className="product-modal-backdrop" onClick={onClose}>
+        <div
+            className="product-modal-backdrop"
+            onClick={handleBackdropClick}
+            aria-modal="true"
+            role="dialog"
+            aria-labelledby="product-modal-title"
+        >
             <div
                 className="product-modal"
-                onClick={(e) => e.stopPropagation()}
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="modal-title"
+                ref={modalRef}
             >
-                {/* Close button */}
                 <button
                     className="product-modal__close"
                     onClick={onClose}
-                    aria-label="Close modal"
+                    aria-label="Close product details"
                 >
                     ✕
                 </button>
 
                 <div className="product-modal__content">
                     {/* Product Image */}
-                    <div className="product-modal__media">
+                    <div className="product-modal__image-section">
                         {image && (
                             <Image
+                                alt={image.altText || product.title}
+                                aspectRatio="1/1"
                                 data={image}
-                                alt={product.title}
-                                sizes="(min-width: 768px) 50vw, 90vw"
+                                loading="eager"
+                                sizes="(min-width: 768px) 50vw, 100vw"
                                 className="product-modal__image"
                             />
                         )}
@@ -93,108 +134,80 @@ export function ProductModal({ product, isOpen, onClose }) {
 
                     {/* Product Details */}
                     <div className="product-modal__details">
-                        {/* Header */}
-                        <div className="product-modal__header">
-                            {product.vendor && (
-                                <span className="product-modal__vendor">{product.vendor}</span>
-                            )}
-                            <h2 id="modal-title" className="product-modal__title">
-                                {product.title}
-                            </h2>
-                            <div className="product-modal__price">
-                                {selectedVariant && (
-                                    <>
-                                        <Money data={selectedVariant.price} />
-                                        {selectedVariant.compareAtPrice && (
-                                            <Money
-                                                data={selectedVariant.compareAtPrice}
-                                                className="product-modal__compare-price"
-                                            />
-                                        )}
-                                    </>
-                                )}
-                            </div>
-                        </div>
+                        <h2 id="product-modal-title" className="product-modal__title">
+                            {product.title}
+                        </h2>
 
-                        {/* Variant Selector */}
-                        {product.options && product.options.length > 0 && (
-                            <div className="product-modal__variants">
-                                {product.options.map((option) => (
-                                    <div key={option.name} className="product-modal__option">
-                                        <label className="product-modal__option-label">
-                                            {option.name}
-                                        </label>
-                                        <div className="product-modal__option-values">
-                                            {option.values.map((value) => {
-                                                const variant = product.variants.nodes.find((v) =>
-                                                    v.selectedOptions.some(
-                                                        (opt) => opt.name === option.name && opt.value === value
-                                                    )
-                                                );
-                                                const isSelected =
-                                                    selectedVariant?.selectedOptions.some(
-                                                        (opt) => opt.name === option.name && opt.value === value
-                                                    );
-
-                                                return (
-                                                    <button
-                                                        key={value}
-                                                        onClick={() => variant && setSelectedVariant(variant)}
-                                                        className={`product-modal__option-btn ${isSelected ? 'active' : ''
-                                                            }`}
-                                                        disabled={!variant?.availableForSale}
-                                                    >
-                                                        {value}
-                                                    </button>
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
+                        {product.vendor && (
+                            <p className="product-modal__vendor">{product.vendor}</p>
                         )}
 
-                        {/* Action Buttons */}
-                        <div className="product-modal__actions">
-                            <AddToCartButton
-                                lines={
-                                    selectedVariant
-                                        ? [
-                                            {
-                                                merchandiseId: selectedVariant.id,
-                                                quantity: 1,
-                                            },
-                                        ]
-                                        : []
-                                }
-                                disabled={!isAvailable}
-                                className="product-modal__add-btn"
-                            >
-                                {isAvailable ? 'Add to Cart' : 'Sold Out'}
-                            </AddToCartButton>
-
-                            <button
-                                onClick={handleBuyNow}
-                                disabled={!isAvailable}
-                                className="product-modal__buy-btn"
-                            >
-                                Buy Now
-                            </button>
+                        <div className="product-modal__price">
+                            {selectedVariant ? (
+                                <Money data={selectedVariant.price} />
+                            ) : (
+                                <Money data={product.priceRange.minVariantPrice} />
+                            )}
                         </div>
 
-                        {/* Description */}
                         {product.description && (
                             <div className="product-modal__description">
-                                <h3 className="product-modal__description-title">Description</h3>
-                                <div
-                                    className="product-modal__description-text"
-                                    dangerouslySetInnerHTML={{ __html: product.descriptionHtml || product.description }}
-                                />
+                                <h3>Description</h3>
+                                <p>{product.description}</p>
                             </div>
                         )}
+
+                        {/* Variant Selector - Simple version */}
+                        {product.variants?.nodes?.length > 1 && (
+                            <div className="product-modal__variants">
+                                <h3>Options</h3>
+                                <p className="product-modal__variants-note">
+                                    {product.variants.nodes.length} variants available
+                                </p>
+                            </div>
+                        )}
+
+                        {/* Add to Cart */}
+                        <div className="product-modal__actions">
+                            {selectedVariant ? (
+                                <AddToCartButton
+                                    disabled={!selectedVariant.availableForSale}
+                                    onClick={handleAddToCart}
+                                    lines={[
+                                        {
+                                            merchandiseId: selectedVariant.id,
+                                            quantity: 1,
+                                        },
+                                    ]}
+                                    className="product-modal__add-to-cart"
+                                >
+                                    {selectedVariant.availableForSale
+                                        ? 'Add to Cart'
+                                        : 'Sold Out'}
+                                </AddToCartButton>
+                            ) : (
+                                <button
+                                    className="product-modal__view-full button-secondary"
+                                    onClick={onClose}
+                                >
+                                    View Full Details
+                                </button>
+                            )}
+
+                            <a
+                                href={`/products/${product.handle}`}
+                                className="product-modal__full-details button-secondary"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                See Full Details
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     );
 }
+
+/** @typedef {import('storefrontapi.generated').ProductItemFragment} ProductItemFragment */

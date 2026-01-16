@@ -1,0 +1,334 @@
+/* ========================================
+ * CUSTOMER ACCOUNT STYLES
+ * ========================================
+ * Enhanced styling for customer account pages
+ */
+
+.account-profile {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.account-profile h2 {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--color-foreground-heading);
+}
+
+/* Success & Error Messages */
+.success-message {
+    background: #D1FAE5;
+    border: 1px solid #10B981;
+    border-radius: var(--border-radius-cards);
+    padding: 12px 16px;
+    margin-bottom: 24px;
+}
+
+.success-message p {
+    color: #065F46;
+    font-weight: 500;
+    margin: 0;
+}
+
+.error-message {
+    background: #FEE2E2;
+    border: 1px solid #EF4444;
+    border-radius: var(--border-radius-cards);
+    padding: 12px 16px;
+}
+
+.error-message mark {
+    background: transparent;
+    color: #991B1B;
+}
+
+/* Fieldsets */
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 32px;
+}
+
+legend {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--color-foreground-heading);
+}
+
+/* Profile Image Upload */
+.profile-image-section {
+    background: rgba(0, 0, 0, 0.02);
+    padding: 24px;
+    border-radius: var(--border-radius-cards);
+}
+
+.profile-image-upload {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+@media (max-width: 640px) {
+    .profile-image-upload {
+        flex-direction: column;
+    }
+}
+
+.image-preview {
+    flex-shrink: 0;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-border);
+}
+
+.avatar-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #F3F4F6;
+}
+
+.upload-controls {
+    flex: 1;
+}
+
+.file-input-hidden {
+    display: none;
+}
+
+.upload-hint {
+    font-size: 13px;
+    color: var(--color-foreground);
+    opacity: 0.7;
+    margin-top: 8px;
+}
+
+/* Form Grid */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+@media (max-width: 640px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-family: var(--font-subheading);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--color-foreground);
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-inputs);
+    font-family: var(--font-body);
+    color: var(--color-foreground);
+    background: var(--color-background);
+    transition: all 0.2s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.input-disabled {
+    background: #F3F4F6;
+    color: #6B7280;
+    cursor: not-allowed;
+}
+
+.field-hint {
+    font-size: 12px;
+    color: var(--color-foreground);
+    opacity: 0.6;
+    margin-top: 4px;
+}
+
+/* Payment Methods Section */
+.payment-methods-section {
+    background: rgba(0, 0, 0, 0.02);
+    padding: 32px;
+    border-radius: var(--border-radius-cards);
+    margin-top: 32px;
+}
+
+.payment-methods-section h3 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--color-foreground-heading);
+}
+
+.section-description {
+    font-size: 14px;
+    color: var(--color-foreground);
+    opacity: 0.7;
+    margin: 0;
+}
+
+.payment-methods-list {
+    margin: 24px 0;
+}
+
+.payment-method-placeholder {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--color-background);
+    border: 2px dashed var(--color-border);
+    border-radius: var(--border-radius-cards);
+    transition: all 0.2s ease;
+}
+
+.payment-method-placeholder:hover {
+    border-color: var(--color-primary);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.payment-method-placeholder p {
+    margin: 4px 0;
+}
+
+.text-small {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+.payment-notice {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-foreground);
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: var(--border-radius-inputs);
+    border-left: 3px solid var(--color-primary);
+}
+
+.payment-notice strong {
+    font-weight: 600;
+}
+
+/* Buttons */
+.button-primary,
+.button-secondary {
+    padding: 12px 24px;
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: var(--border-radius-buttons);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.button-primary {
+    background: var(--button-primary-bg);
+    color: var(--button-primary-text);
+}
+
+.button-primary:hover:not(:disabled) {
+    background: var(--button-primary-hover-bg);
+    transform: scale(1.02);
+}
+
+.button-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.button-secondary {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    border: 1px solid var(--color-border);
+}
+
+.button-secondary:hover {
+    border-color: var(--color-primary);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+/* Addresses Page */
+.account-addresses {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.account-addresses h2 {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: var(--color-foreground-heading);
+}
+
+.account-addresses fieldset {
+    background: rgba(0, 0, 0, 0.02);
+    padding: 24px;
+    border-radius: var(--border-radius-cards);
+    margin-bottom: 24px;
+}
+
+.account-addresses input[type="text"],
+.account-addresses input[type="tel"] {
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-inputs);
+    font-size: 14px;
+}
+
+.account-addresses input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .account-profile,
+    .account-addresses {
+        padding: 24px 16px;
+    }
+
+    .account-profile h2,
+    .account-addresses h2 {
+        font-size: 24px;
+    }
+
+    .payment-methods-section {
+        padding: 20px;
+    }
+}
