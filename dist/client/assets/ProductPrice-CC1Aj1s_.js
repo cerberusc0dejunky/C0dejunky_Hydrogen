@@ -1,0 +1,1 @@
+import{j as s}from"./jsx-runtime-59Xd5K8P.js";import{M as r}from"./Money-BwnrHHOZ.js";function o({price:a,compareAtPrice:d}){return s.jsx("div",{className:"product-price",children:d?s.jsxs("div",{className:"product-price-on-sale",children:[a?s.jsx(r,{data:a}):null,s.jsx("s",{children:s.jsx(r,{data:d})})]}):a?s.jsx(r,{data:a}):s.jsx("span",{children:" "})})}export{o as P};

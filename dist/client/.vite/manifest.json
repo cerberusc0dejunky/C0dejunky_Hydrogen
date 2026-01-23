@@ -1,0 +1,495 @@
+{
+  "C:/Users/Quant/Projects/Hydrogen/C0dejunky_Hydrogen/app/styles/app.css": {
+    "file": "assets/app-DJjUSA4t.css",
+    "src": "C:/Users/Quant/Projects/Hydrogen/C0dejunky_Hydrogen/app/styles/app.css"
+  },
+  "C:/Users/Quant/Projects/Hydrogen/C0dejunky_Hydrogen/app/styles/components.css": {
+    "file": "assets/components-C6p07AyD.css",
+    "src": "C:/Users/Quant/Projects/Hydrogen/C0dejunky_Hydrogen/app/styles/components.css"
+  },
+  "C:/Users/Quant/Projects/Hydrogen/C0dejunky_Hydrogen/app/styles/product-modal.css": {
+    "file": "assets/product-modal-D2rH9Nlk.css",
+    "src": "C:/Users/Quant/Projects/Hydrogen/C0dejunky_Hydrogen/app/styles/product-modal.css"
+  },
+  "C:/Users/Quant/Projects/Hydrogen/C0dejunky_Hydrogen/app/styles/reset.css": {
+    "file": "assets/reset-BKioPaen.css",
+    "src": "C:/Users/Quant/Projects/Hydrogen/C0dejunky_Hydrogen/app/styles/reset.css"
+  },
+  "C:/Users/Quant/Projects/Hydrogen/C0dejunky_Hydrogen/app/styles/tabbed-collection.css": {
+    "file": "assets/tabbed-collection-ycvf5W0P.css",
+    "src": "C:/Users/Quant/Projects/Hydrogen/C0dejunky_Hydrogen/app/styles/tabbed-collection.css"
+  },
+  "C:/Users/Quant/Projects/Hydrogen/C0dejunky_Hydrogen/app/styles/theme.css": {
+    "file": "assets/theme-VDXmGRcm.css",
+    "src": "C:/Users/Quant/Projects/Hydrogen/C0dejunky_Hydrogen/app/styles/theme.css"
+  },
+  "_AddToCartButton-CSobI2M-.js": {
+    "file": "assets/AddToCartButton-CSobI2M-.js",
+    "name": "AddToCartButton",
+    "imports": [
+      "_jsx-runtime-59Xd5K8P.js",
+      "_index-Ck7_0ybI.js"
+    ]
+  },
+  "_Aside-C1PG5IR-.js": {
+    "file": "assets/Aside-C1PG5IR-.js",
+    "name": "Aside",
+    "imports": [
+      "_jsx-runtime-59Xd5K8P.js",
+      "_chunk-TMI4QPZX-voV0X6j3.js"
+    ]
+  },
+  "_CartMain-C3g3RXvy.js": {
+    "file": "assets/CartMain-C3g3RXvy.js",
+    "name": "CartMain",
+    "imports": [
+      "_jsx-runtime-59Xd5K8P.js",
+      "_index-Ck7_0ybI.js",
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_Aside-C1PG5IR-.js",
+      "_variants-B4qqWAGa.js",
+      "_ProductPrice-CC1Aj1s_.js",
+      "_Image-dewHdXBc.js",
+      "_Money-BwnrHHOZ.js"
+    ]
+  },
+  "_Image-dewHdXBc.js": {
+    "file": "assets/Image-dewHdXBc.js",
+    "name": "Image",
+    "imports": [
+      "_jsx-runtime-59Xd5K8P.js",
+      "_chunk-TMI4QPZX-voV0X6j3.js"
+    ]
+  },
+  "_Money-BwnrHHOZ.js": {
+    "file": "assets/Money-BwnrHHOZ.js",
+    "name": "Money",
+    "imports": [
+      "_jsx-runtime-59Xd5K8P.js",
+      "_chunk-TMI4QPZX-voV0X6j3.js"
+    ]
+  },
+  "_PaginatedResourceSection-Cvbn5AxP.js": {
+    "file": "assets/PaginatedResourceSection-Cvbn5AxP.js",
+    "name": "PaginatedResourceSection",
+    "imports": [
+      "_jsx-runtime-59Xd5K8P.js",
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_index-Ck7_0ybI.js"
+    ]
+  },
+  "_ProductItem-ziAVa_Ty.js": {
+    "file": "assets/ProductItem-ziAVa_Ty.js",
+    "name": "ProductItem",
+    "imports": [
+      "_jsx-runtime-59Xd5K8P.js",
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_variants-B4qqWAGa.js",
+      "_Image-dewHdXBc.js",
+      "_Money-BwnrHHOZ.js"
+    ]
+  },
+  "_ProductPrice-CC1Aj1s_.js": {
+    "file": "assets/ProductPrice-CC1Aj1s_.js",
+    "name": "ProductPrice",
+    "imports": [
+      "_jsx-runtime-59Xd5K8P.js",
+      "_Money-BwnrHHOZ.js"
+    ]
+  },
+  "_chunk-TMI4QPZX-voV0X6j3.js": {
+    "file": "assets/chunk-TMI4QPZX-voV0X6j3.js",
+    "name": "chunk-TMI4QPZX"
+  },
+  "_index-Ck7_0ybI.js": {
+    "file": "assets/index-Ck7_0ybI.js",
+    "name": "index",
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js"
+    ],
+    "dynamicImports": [
+      "node_modules/@shopify/hydrogen/dist/production/log-seo-tags-TY72EQWZ.js"
+    ]
+  },
+  "_jsx-runtime-59Xd5K8P.js": {
+    "file": "assets/jsx-runtime-59Xd5K8P.js",
+    "name": "jsx-runtime",
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js"
+    ]
+  },
+  "_search-DOeYwaXi.js": {
+    "file": "assets/search-DOeYwaXi.js",
+    "name": "search"
+  },
+  "_variants-B4qqWAGa.js": {
+    "file": "assets/variants-B4qqWAGa.js",
+    "name": "variants",
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js"
+    ]
+  },
+  "app/assets/favicon.svg": {
+    "file": "assets/favicon-CnWN81dK.svg",
+    "src": "app/assets/favicon.svg"
+  },
+  "app/entry.client.jsx": {
+    "file": "assets/entry.client-VwCXWJAG.js",
+    "name": "entry.client",
+    "src": "app/entry.client.jsx",
+    "isEntry": true,
+    "imports": [
+      "_jsx-runtime-59Xd5K8P.js",
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_index-Ck7_0ybI.js"
+    ]
+  },
+  "app/root.jsx?__react-router-build-client-route": {
+    "file": "assets/root-Cqz8EaNM.js",
+    "name": "root",
+    "src": "app/root.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js",
+      "_index-Ck7_0ybI.js",
+      "_Aside-C1PG5IR-.js",
+      "_CartMain-C3g3RXvy.js",
+      "_search-DOeYwaXi.js",
+      "_Image-dewHdXBc.js",
+      "_Money-BwnrHHOZ.js",
+      "_variants-B4qqWAGa.js",
+      "_ProductPrice-CC1Aj1s_.js"
+    ],
+    "assets": [
+      "assets/favicon-CnWN81dK.svg",
+      "assets/reset-BKioPaen.css",
+      "assets/theme-VDXmGRcm.css",
+      "assets/components-C6p07AyD.css",
+      "assets/app-DJjUSA4t.css",
+      "assets/product-modal-D2rH9Nlk.css",
+      "assets/tabbed-collection-ycvf5W0P.css"
+    ]
+  },
+  "app/routes/$.jsx?__react-router-build-client-route": {
+    "file": "assets/_-n2AFu7V_.js",
+    "name": "_",
+    "src": "app/routes/$.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js"
+    ]
+  },
+  "app/routes/[robots.txt].jsx?__react-router-build-client-route": {
+    "file": "assets/_robots.txt_-l0sNRNKZ.js",
+    "name": "_robots.txt_",
+    "src": "app/routes/[robots.txt].jsx?__react-router-build-client-route",
+    "isEntry": true
+  },
+  "app/routes/[sitemap.xml].jsx?__react-router-build-client-route": {
+    "file": "assets/_sitemap.xml_-l0sNRNKZ.js",
+    "name": "_sitemap.xml_",
+    "src": "app/routes/[sitemap.xml].jsx?__react-router-build-client-route",
+    "isEntry": true
+  },
+  "app/routes/_index.jsx?__react-router-build-client-route": {
+    "file": "assets/_index-B2T2XOTr.js",
+    "name": "_index",
+    "src": "app/routes/_index.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js",
+      "_ProductItem-ziAVa_Ty.js",
+      "_Image-dewHdXBc.js",
+      "_variants-B4qqWAGa.js",
+      "_Money-BwnrHHOZ.js"
+    ]
+  },
+  "app/routes/account.$.jsx?__react-router-build-client-route": {
+    "file": "assets/account._-l0sNRNKZ.js",
+    "name": "account._",
+    "src": "app/routes/account.$.jsx?__react-router-build-client-route",
+    "isEntry": true
+  },
+  "app/routes/account._index.jsx?__react-router-build-client-route": {
+    "file": "assets/account._index-l0sNRNKZ.js",
+    "name": "account._index",
+    "src": "app/routes/account._index.jsx?__react-router-build-client-route",
+    "isEntry": true
+  },
+  "app/routes/account.addresses.jsx?__react-router-build-client-route": {
+    "file": "assets/account.addresses-DVIsvt8T.js",
+    "name": "account.addresses",
+    "src": "app/routes/account.addresses.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js"
+    ]
+  },
+  "app/routes/account.jsx?__react-router-build-client-route": {
+    "file": "assets/account-B0aPAZKZ.js",
+    "name": "account",
+    "src": "app/routes/account.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js"
+    ]
+  },
+  "app/routes/account.orders.$id.jsx?__react-router-build-client-route": {
+    "file": "assets/account.orders._id-C-pEMbY-.js",
+    "name": "account.orders._id",
+    "src": "app/routes/account.orders.$id.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js",
+      "_Money-BwnrHHOZ.js",
+      "_Image-dewHdXBc.js"
+    ]
+  },
+  "app/routes/account.orders._index.jsx?__react-router-build-client-route": {
+    "file": "assets/account.orders._index-CUfVk7fH.js",
+    "name": "account.orders._index",
+    "src": "app/routes/account.orders._index.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js",
+      "_PaginatedResourceSection-Cvbn5AxP.js",
+      "_index-Ck7_0ybI.js",
+      "_Money-BwnrHHOZ.js"
+    ]
+  },
+  "app/routes/account.profile.jsx?__react-router-build-client-route": {
+    "file": "assets/account.profile-3dlHhPsy.js",
+    "name": "account.profile",
+    "src": "app/routes/account.profile.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js"
+    ]
+  },
+  "app/routes/account_.authorize.jsx?__react-router-build-client-route": {
+    "file": "assets/account_.authorize-l0sNRNKZ.js",
+    "name": "account_.authorize",
+    "src": "app/routes/account_.authorize.jsx?__react-router-build-client-route",
+    "isEntry": true
+  },
+  "app/routes/account_.login.jsx?__react-router-build-client-route": {
+    "file": "assets/account_.login-l0sNRNKZ.js",
+    "name": "account_.login",
+    "src": "app/routes/account_.login.jsx?__react-router-build-client-route",
+    "isEntry": true
+  },
+  "app/routes/account_.logout.jsx?__react-router-build-client-route": {
+    "file": "assets/account_.logout-l0sNRNKZ.js",
+    "name": "account_.logout",
+    "src": "app/routes/account_.logout.jsx?__react-router-build-client-route",
+    "isEntry": true
+  },
+  "app/routes/api.$version.[graphql.json].jsx?__react-router-build-client-route": {
+    "file": "assets/api._version._graphql.json_-l0sNRNKZ.js",
+    "name": "api._version._graphql.json_",
+    "src": "app/routes/api.$version.[graphql.json].jsx?__react-router-build-client-route",
+    "isEntry": true
+  },
+  "app/routes/api.ai.chat.tsx?__react-router-build-client-route": {
+    "file": "assets/api.ai.chat-l0sNRNKZ.js",
+    "name": "api.ai.chat",
+    "src": "app/routes/api.ai.chat.tsx?__react-router-build-client-route",
+    "isEntry": true
+  },
+  "app/routes/blogs.$blogHandle.$articleHandle.jsx?__react-router-build-client-route": {
+    "file": "assets/blogs._blogHandle._articleHandle-BAsPNHwN.js",
+    "name": "blogs._blogHandle._articleHandle",
+    "src": "app/routes/blogs.$blogHandle.$articleHandle.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js",
+      "_Image-dewHdXBc.js"
+    ]
+  },
+  "app/routes/blogs.$blogHandle._index.jsx?__react-router-build-client-route": {
+    "file": "assets/blogs._blogHandle._index-DKy7-irL.js",
+    "name": "blogs._blogHandle._index",
+    "src": "app/routes/blogs.$blogHandle._index.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js",
+      "_PaginatedResourceSection-Cvbn5AxP.js",
+      "_Image-dewHdXBc.js",
+      "_index-Ck7_0ybI.js"
+    ]
+  },
+  "app/routes/blogs._index.jsx?__react-router-build-client-route": {
+    "file": "assets/blogs._index-DIZfHzX7.js",
+    "name": "blogs._index",
+    "src": "app/routes/blogs._index.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js",
+      "_PaginatedResourceSection-Cvbn5AxP.js",
+      "_index-Ck7_0ybI.js"
+    ]
+  },
+  "app/routes/cart.$lines.jsx?__react-router-build-client-route": {
+    "file": "assets/cart._lines-DYKlQxbL.js",
+    "name": "cart._lines",
+    "src": "app/routes/cart.$lines.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js"
+    ]
+  },
+  "app/routes/cart.jsx?__react-router-build-client-route": {
+    "file": "assets/cart-DjYRyaA_.js",
+    "name": "cart",
+    "src": "app/routes/cart.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js",
+      "_CartMain-C3g3RXvy.js",
+      "_index-Ck7_0ybI.js",
+      "_Aside-C1PG5IR-.js",
+      "_variants-B4qqWAGa.js",
+      "_ProductPrice-CC1Aj1s_.js",
+      "_Money-BwnrHHOZ.js",
+      "_Image-dewHdXBc.js"
+    ]
+  },
+  "app/routes/collections.$handle.jsx?__react-router-build-client-route": {
+    "file": "assets/collections._handle-CNmJ6j5K.js",
+    "name": "collections._handle",
+    "src": "app/routes/collections.$handle.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js",
+      "_index-Ck7_0ybI.js",
+      "_Image-dewHdXBc.js",
+      "_Money-BwnrHHOZ.js",
+      "_AddToCartButton-CSobI2M-.js",
+      "_Aside-C1PG5IR-.js"
+    ]
+  },
+  "app/routes/collections._index.jsx?__react-router-build-client-route": {
+    "file": "assets/collections._index-CySZ1QsT.js",
+    "name": "collections._index",
+    "src": "app/routes/collections._index.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js",
+      "_PaginatedResourceSection-Cvbn5AxP.js",
+      "_Image-dewHdXBc.js",
+      "_index-Ck7_0ybI.js"
+    ]
+  },
+  "app/routes/collections.all.jsx?__react-router-build-client-route": {
+    "file": "assets/collections.all-BYflAuNN.js",
+    "name": "collections.all",
+    "src": "app/routes/collections.all.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js",
+      "_PaginatedResourceSection-Cvbn5AxP.js",
+      "_ProductItem-ziAVa_Ty.js",
+      "_index-Ck7_0ybI.js",
+      "_variants-B4qqWAGa.js",
+      "_Image-dewHdXBc.js",
+      "_Money-BwnrHHOZ.js"
+    ]
+  },
+  "app/routes/discount.$code.jsx?__react-router-build-client-route": {
+    "file": "assets/discount._code-l0sNRNKZ.js",
+    "name": "discount._code",
+    "src": "app/routes/discount.$code.jsx?__react-router-build-client-route",
+    "isEntry": true
+  },
+  "app/routes/pages.$handle.jsx?__react-router-build-client-route": {
+    "file": "assets/pages._handle-ck4FqZ6U.js",
+    "name": "pages._handle",
+    "src": "app/routes/pages.$handle.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js"
+    ]
+  },
+  "app/routes/policies.$handle.jsx?__react-router-build-client-route": {
+    "file": "assets/policies._handle-BT4hcPvn.js",
+    "name": "policies._handle",
+    "src": "app/routes/policies.$handle.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js"
+    ]
+  },
+  "app/routes/policies._index.jsx?__react-router-build-client-route": {
+    "file": "assets/policies._index-DFG2JJKB.js",
+    "name": "policies._index",
+    "src": "app/routes/policies._index.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js"
+    ]
+  },
+  "app/routes/products.$handle.jsx?__react-router-build-client-route": {
+    "file": "assets/products._handle-Cpeno-_K.js",
+    "name": "products._handle",
+    "src": "app/routes/products.$handle.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js",
+      "_index-Ck7_0ybI.js",
+      "_ProductPrice-CC1Aj1s_.js",
+      "_Image-dewHdXBc.js",
+      "_AddToCartButton-CSobI2M-.js",
+      "_Aside-C1PG5IR-.js",
+      "_Money-BwnrHHOZ.js"
+    ]
+  },
+  "app/routes/search.jsx?__react-router-build-client-route": {
+    "file": "assets/search-BkrVRPfJ.js",
+    "name": "search",
+    "src": "app/routes/search.jsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-TMI4QPZX-voV0X6j3.js",
+      "_jsx-runtime-59Xd5K8P.js",
+      "_index-Ck7_0ybI.js",
+      "_search-DOeYwaXi.js",
+      "_Image-dewHdXBc.js",
+      "_Money-BwnrHHOZ.js"
+    ]
+  },
+  "app/routes/sitemap.$type.$page[.xml].jsx?__react-router-build-client-route": {
+    "file": "assets/sitemap._type._page_.xml_-l0sNRNKZ.js",
+    "name": "sitemap._type._page_.xml_",
+    "src": "app/routes/sitemap.$type.$page[.xml].jsx?__react-router-build-client-route",
+    "isEntry": true
+  },
+  "node_modules/@shopify/hydrogen/dist/production/log-seo-tags-TY72EQWZ.js": {
+    "file": "assets/log-seo-tags-TY72EQWZ-DCHH-_Gl.js",
+    "name": "log-seo-tags-TY72EQWZ",
+    "src": "node_modules/@shopify/hydrogen/dist/production/log-seo-tags-TY72EQWZ.js",
+    "isDynamicEntry": true
+  },
+  "oxygen.json": {
+    "file": "oxygen.json",
+    "src": "oxygen.json"
+  }
+}
